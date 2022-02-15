@@ -22,8 +22,8 @@
         </activity>
         <activity android:name=".mvp.MvpDemoActivity"/>
         <activity android:name=".mvc.MvcDemoActivity"/>
-        <activity android:name=".mvvm.MvvmActivity"/>
-        <activity android:name=".livedata.LiveDataDemoActivity"/>
+        <activity android:name=".mvvm.MvvmDemoActivity"/>
+        <activity android:name=".mvvp_android.MVVMAndroidDemoActivity"/>
     </application>
 
 </manifest>

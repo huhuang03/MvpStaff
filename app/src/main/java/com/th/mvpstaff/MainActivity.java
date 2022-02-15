@@ -3,7 +3,6 @@ package com.th.mvpstaff;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -11,15 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.th.mvpstaff.databinding.ActivityMainBinding;
-import com.th.mvpstaff.livedata.LiveDataDemoActivity;
+import com.th.mvpstaff.mvvp_android.MVVMAndroidDemoActivity;
 import com.th.mvpstaff.mvc.MvcDemoActivity;
 import com.th.mvpstaff.mvp.MvpDemoActivity;
-import com.th.mvpstaff.mvvm.MvvmActivity;
+import com.th.mvpstaff.mvvm.MvvmDemoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         items.add(new Item("MVP", MvpDemoActivity.class));
         items.add(new Item("MVC", MvcDemoActivity.class));
-        items.add(new Item("MVVM", MvvmActivity.class));
-        items.add(new Item("LiveData", LiveDataDemoActivity.class));
+        items.add(new Item("MVVM", MvvmDemoActivity.class));
+        items.add(new Item("MVVM Android", MVVMAndroidDemoActivity.class));
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

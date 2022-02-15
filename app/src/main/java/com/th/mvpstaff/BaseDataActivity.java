@@ -6,8 +6,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class BaseDataActivity extends Activity {
+public class BaseDataActivity extends AppCompatActivity {
     protected TextView tv;
     protected Button btIncrement;
     protected Button btReduce;
