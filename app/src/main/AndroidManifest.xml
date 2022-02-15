@@ -20,10 +20,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.MvpDemoActivity"/>
-        <activity android:name=".mvc.MvcDemoActivity"/>
-        <activity android:name=".mvvm.MvvmDemoActivity"/>
-        <activity android:name=".mvvp_android.MVVMAndroidDemoActivity"/>
+
+        <activity
+            android:theme="@style/Theme.MvpStaff.NoActionBar"
+            android:name=".mvp.MvpDemoActivity"/>
+
+        <activity
+            android:theme="@style/Theme.MvpStaff.NoActionBar"
+            android:name=".mvc.MvcDemoActivity"/>
+
+        <activity
+            android:theme="@style/Theme.MvpStaff.NoActionBar"
+            android:name=".mvvm.MvvmDemoActivity"/>
+
+        <activity
+            android:theme="@style/Theme.MvpStaff.NoActionBar"
+            android:name=".mvvp_android.MVVMAndroidDemoActivity"/>
+
     </application>
 
 </manifest>

@@ -45,9 +45,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        items.add(new Item("MVP", MvpDemoActivity.class));
         items.add(new Item("MVC", MvcDemoActivity.class));
-        items.add(new Item("MVVM", MvvmDemoActivity.class));
+        items.add(new Item("MVP", MvpDemoActivity.class));
         items.add(new Item("MVVM Android", MVVMAndroidDemoActivity.class));
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());

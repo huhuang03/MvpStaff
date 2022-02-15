@@ -1,31 +1,37 @@
 package com.th.mvpstaff.mvc;
 
+import com.th.mvpstaff.Config;
+import com.th.mvpstaff.IView;
+import com.th.mvpstaff.bean.Account;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
+ * Model里面写业务逻辑和更新UI。重Model，轻Controller
+ *
  * https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
  * https://developer.mozilla.org/en-US/docs/Glossary/MVC
  *
- * Maintain the data and *update ui*
+ * It directly manages the data, logic and rules of the application.
  */
 interface Model {
-    void increase();
-    void reduce();
+    void login(String username, String pwd);
 }
 
 /**
  * Display UI
  */
-interface View {
-    void setText(String text);
+interface View extends IView  {
 }
 
 /**
- * Routes commands to model and view parts.
+ * Accepts input and converts it to commands for the model or view
  *
  * And can update ui directly somethings.
  */
 interface Controller {
-    void handleIncrease();
-    void handleReduce();
+    void handleLogin(String username, String pwd);
 }
 
 class ControllerImpl implements Controller {
@@ -36,34 +42,39 @@ class ControllerImpl implements Controller {
     }
 
     @Override
-    public void handleIncrease() {
-        model.increase();
-    }
-
-    @Override
-    public void handleReduce() {
-        model.reduce();
+    public void handleLogin(String username, String pwd) {
+        model.login(username, pwd);
     }
 }
 
 class ModelImpl implements Model {
-    private int current = 0;
     private View view;
+    private boolean isLogging = false;
 
+    /**
+     * Model引用View，并操作view更新UI
+     */
     public ModelImpl(View view) {
         this.view = view;
-        this.view.setText(current + "");
     }
 
     @Override
-    public void increase() {
-        current += 1;
-        view.setText(current + "");
-    }
+    public void login(String username, String pwd) {
+        if (isLogging) {
+            return;
+        }
+        view.showLogging();
+        isLogging = true;
 
-    @Override
-    public void reduce() {
-        current -= 1;
-        view.setText(current + "");
+        // do the login staff
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                view.hideLogging();
+                Account account = new Account(username, pwd);
+                view.updateAccountUI(account);
+                isLogging = false;
+            }
+        }, Config.LOGIN_DURATION);
     }
 }
