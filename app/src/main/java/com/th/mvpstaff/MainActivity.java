@@ -17,7 +17,6 @@ import com.th.mvpstaff.databinding.ActivityMainBinding;
 import com.th.mvpstaff.mvvp_android.MVVMAndroidDemoActivity;
 import com.th.mvpstaff.mvc.MvcDemoActivity;
 import com.th.mvpstaff.mvp.MvpDemoActivity;
-import com.th.mvpstaff.mvvm.MvvmDemoActivity;
 
 import java.util.ArrayList;
 import java.util.List;

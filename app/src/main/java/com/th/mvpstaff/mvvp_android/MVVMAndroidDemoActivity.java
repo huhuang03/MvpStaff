@@ -2,9 +2,11 @@ package com.th.mvpstaff.mvvp_android;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.activity.ComponentActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingComponent;
@@ -17,29 +19,11 @@ import com.th.mvpstaff.R;
 import com.th.mvpstaff.bean.Account;
 import com.th.mvpstaff.databinding.ActivityMvvmAndroidBinding;
 
-class LoginService {
-    private static LoginService _inst;
-
-    public static LoginService inst() {
-        if (_inst == null) {
-            synchronized(LoginService.class) {
-                if (_inst == null) {
-                    _inst = new LoginService();
-                }
-            }
-        }
-        return _inst;
-    }
-
-    public Account login(String username, String pwd) {
-        return new Account(username, pwd);
-    }
-}
-
 /**
  * Should the view communicate with viewModel?
  */
 public class MVVMAndroidDemoActivity extends BaseDataActivity {
+    private MvvmModelImpl model;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,16 +31,17 @@ public class MVVMAndroidDemoActivity extends BaseDataActivity {
         ActivityMvvmAndroidBinding binding = ActivityMvvmAndroidBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
-        LoginViewModel viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        binding.setLoginModel(viewModel);
-
+        // how did you release?
+        LoginViewModel viewModel = new ViewModelProvider(MVVMAndroidDemoActivity.this).get(LoginViewModel.class);
         viewModel.account.observe(this, account -> {
             binding.setAccount(account);
         });
+        binding.setLoginModel(viewModel);
+
+        model = new MvvmModelImpl(viewModel);
 
         binding.btLogin.setOnClickListener(v -> {
-            Account account = LoginService.inst().login(viewModel.username.getValue(), viewModel.pwd.getValue());
-            viewModel.account.setValue(account);
+            model.login(viewModel.username.getValue(), viewModel.pwd.getValue());
         });
     }
 }

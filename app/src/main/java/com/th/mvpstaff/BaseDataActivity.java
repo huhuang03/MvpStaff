@@ -49,7 +49,7 @@ public class BaseDataActivity extends AppCompatActivity implements IView {
     @Override
     public void hideLogging() {
         Util.post(() -> {
-            cpLogin.setVisibility(View.VISIBLE);
+            cpLogin.setVisibility(View.GONE);
             tvLogin.setText("登陆");
         });
     }

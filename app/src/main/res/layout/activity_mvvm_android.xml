@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="loginModel"
             type="com.th.mvpstaff.mvvp_android.LoginViewModel" />
-
         <variable
             name="account"
             type="com.th.mvpstaff.bean.Account" />
@@ -63,11 +63,45 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <Button
-            android:layout_marginTop="30dp"
-            android:text="登陆"
+        <LinearLayout
             android:id="@+id/btLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="20dp"
+            android:background="?attr/colorPrimary"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="right"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    app:indicatorColor="@android:color/white"
+                    android:visibility="@{loginModel.isLogging? View.VISIBLE: View.GONE}"
+                    android:id="@+id/cpLogin"
+                    app:trackThickness="2dp"
+                    app:indicatorSize="11dp"
+                    android:indeterminate="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <!-- loginModel.isLogging 在改变的时候会自动更新视图 -->
+            <TextView
+                android:id="@+id/tvLogin"
+                android:layout_marginLeft="10dp"
+                android:textColor="@android:color/white"
+                android:text="@{loginModel.isLogging? `登陆中。。。`: `登陆`}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

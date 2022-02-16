@@ -16,4 +16,8 @@ public class Util {
     public static void post(Runnable runnable) {
         getHandler().post(runnable);
     }
+
+    public static void postDelay(Runnable runnable, long delay) {
+        getHandler().postDelayed(runnable, delay);
+    }
 }
